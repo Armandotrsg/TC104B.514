@@ -5,7 +5,7 @@ int main() {
     FILE *tomayInput;
     char readBuffer[80];
     lsOutput = popen("ls *.c","r"); //Corre el programa ls en modo lectura
-    tomayInput = popen("./tomay.exe","w");
+    tomayInput = popen("wc -l","w");
     while (fgets(readBuffer,80,lsOutput)){
         fputs(readBuffer, tomayInput);
     }
