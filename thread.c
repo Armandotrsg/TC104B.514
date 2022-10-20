@@ -1,5 +1,6 @@
 #include <pthread.h>
 #include <stdio.h>
+#define NUM_THREADS 10
 
 // Para compilar:\
 gcc thread.c -lpthread -o thread.exe
@@ -18,11 +19,11 @@ void* holaMundo(void *arg){ //Regresa un apuntador a la nada y recibe un apuntad
 }
 
 int main() {
-    for(int i = 0; i < 100; i++) {
-        ThreadData myData;
+    ThreadData threadData[NUM_THREADS]; //Garantiza que cada hilo reciba su propio parámetro único
+    for(int i = 0; i < NUM_THREADS; i++) {
         pthread_t threadId;
-        myData.threadId = i;
-        pthread_create(&threadId,NULL,holaMundo, (void *) &myData); //Si el hilo principal muere, los hilos dejan de ejecutarse
+        threadData[i].threadId = i;
+        pthread_create(&threadId,NULL,holaMundo, (void *) &threadData[i]); //Si el hilo principal muere, los hilos dejan de ejecutarse
         //Hacemos un cast del myData a void *
     }
     pthread_exit(NULL); //Se espera a que todos los hilos hayan terminado
