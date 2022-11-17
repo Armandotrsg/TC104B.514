@@ -15,8 +15,8 @@ db = firestore.client()
 while True:
     print("Sending data")
     current_date = datetime.now()
-    date = current_date.stfrtime('%Y-%m-%d')
-    hour = current_date.stfrtime('%H')
+    date = current_date.strftime('%Y-%m-%d')
+    hour = current_date.strftime('%H')
     collectionName = u'sensor_1_{0}'.format(date)
     encendido = bool(random.getrandbits(1))
 
